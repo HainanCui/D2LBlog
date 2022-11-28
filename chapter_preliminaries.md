@@ -13,16 +13,22 @@ D2L在线学习的第二张内容
 
 ##数据预处理
 1. pandas软件包是Python中常用的数据分析工具中，pandas可以与张量兼容。
+    ```python {cmd=true}
     import torch
     X, y = torch.tensor(inputs.values), torch.tensor(outputs.values)
-
+    ```
     这里inputs和outputs是产生于data
+    ```python {cmd=true}
     import pandas as pd
     data = pd.read_csv(data_file)
-
+    ```
 2. 用pandas处理缺失的数据时，我们可根据情况选择用插值法和删除法。
     插值法：
+    ```python {cmd=true}
     inputs, outputs = data.iloc[:, 0:2], data.iloc[:, 2]
     inputs = inputs.fillna(inputs.mean())
+    ```
     删除法（变成新的一列）：
+    ```python {cmd=true}
     inputs = pd.get_dummies(inputs, dummy_na=True)
+    ```
