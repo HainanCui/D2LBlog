@@ -32,3 +32,26 @@ D2L在线学习的第二张内容
     ```python {cmd=true}
     inputs = pd.get_dummies(inputs, dummy_na=True)
     ```
+3. 作业1 删除NaN最多的那一列
+    ```python
+    import pandas as pd
+    data = pd.read_csv(data_file)
+    print(data)
+
+    count_max = 0
+    nan_numer = data.isnull().sum()
+    print(nan_numer)
+    id = nan_numer.idxmax()
+    print(id)
+    data_new = data.drop(id, axis=1)
+    print(data_new)
+
+    labels = ['NumRooms','Alley','Price']
+    for label in labels:
+        count = data[label].isna().sum()
+        if count > count_max:
+            count_max = count
+            label_max = label
+    data_new = data.drop(label_max, axis=1)
+    print(data_new)
+    ```
